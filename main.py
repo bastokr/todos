@@ -35,7 +35,7 @@ async def get_todos(username):
 @app.delete("/todos/<string:username>")
 async def delete_todo(username):
     request = await quart.request.get_json(force=True)
-    todo_idx = request["todo_idx"]
+    todo_idx = request["    "]
     if 0 <= todo_idx < len(_TODOS[username]):
         _TODOS[username].pop(todo_idx)
     return quart.Response(response='OK', status=200)
@@ -53,7 +53,7 @@ async def plugin_manifest():
     with open("ai-plugin.json") as f:
         text = f.read()
         # This is a trick we do to populate the PLUGIN_HOSTNAME constant in the manifest
-        text = text.replace("PLUGIN_HOSTNAME", f"https://{host}")
+        text = text.replace("PLUGIN_HOSTNAME", f"http://{host}")
         return quart.Response(text, mimetype="text/json")
 
 
@@ -63,7 +63,7 @@ async def openapi_spec():
     with open("openapi.yaml") as f:
         text = f.read()
         # This is a trick we do to populate the PLUGIN_HOSTNAME constant in the OpenAPI spec
-        text = text.replace("PLUGIN_HOSTNAME", f"https://{host}")
+        text = text.replace("PLUGIN_HOSTNAME", f"http://{host}")
         return quart.Response(text, mimetype="text/yaml")
 
 
@@ -73,3 +73,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
+ 
+ 
+#  http://localhost:5002/todo/park/오늘의할일등록
+#  http://localhost:5002/todos/park/ 할일리스트
+    
